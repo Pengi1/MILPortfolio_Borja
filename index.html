@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My MIL Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+.thumb{overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+:root{
+  --bg:#ffffff; --surface:#fff8d6; --ink:#0b0b0b; --muted:#454a5e; --line:#e6dfb0;
+  --blue:#1a3fd6; --yellow:#ffd93b;
+  --on-blue:#ffffff;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.65 "DM Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;line-height:1.05;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+
+.bars{display:flex;height:14px}
+.bars i{flex:1}
+.bars i:nth-child(odd){background:var(--yellow)}
+.bars i:nth-child(2){background:var(--ink)}.bars i:nth-child(4){background:var(--blue)}.bars i:nth-child(6){background:var(--ink)}
+
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.nav{max-width:1000px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font:800 1.2rem "Bricolage Grotesque",sans-serif;text-decoration:none}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px}
+.nav a.link{display:block;padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:500}
+.nav a.link[aria-current="page"]{background:var(--ink);color:var(--bg)}
+.nav a.link:hover{background:var(--line)}
+.nav a.link[aria-current="page"]:hover{background:var(--ink)}
+
+main{max-width:1000px;margin:0 auto;padding:40px 20px 64px;min-height:70vh}
+.view{display:none}.view.on{display:block}
+
+/* home */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:800;letter-spacing:-.03em}
+.hero p.quote{font-size:1.2rem;color:var(--muted);margin:18px 0 28px;max-width:34ch}
+.btn{display:inline-block;background:var(--blue);color:var(--on-blue);padding:12px 22px;border-radius:10px;font-weight:500;text-decoration:none;border:0;cursor:pointer;font-size:1rem}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.photo{aspect-ratio:4/5;border-radius:18px;background:var(--surface);border:2px dashed var(--line);display:grid;place-items:center;text-align:center;color:var(--muted);padding:20px;position:relative;overflow:hidden}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.about{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.about div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.about h3{font-size:1.1rem;margin-bottom:6px}
+.about p{margin:0;color:var(--muted);font-size:.98rem}
+
+/* activities */
+.page-title{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.sub{color:var(--muted);margin:0 0 28px;max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-3px);border-color:var(--ink)}
+.thumb{height:140px;display:grid;place-items:center;font:800 2.4rem "Bricolage Grotesque",sans-serif;color:var(--ink);background:var(--yellow)}
+.thumb.alt{background:#fff;color:var(--blue);border-bottom:1px solid var(--line)}
+.card .body{padding:16px 18px 20px}
+.tag{display:inline-block;font-size:.82rem;font-weight:500;color:var(--muted);margin-bottom:4px}
+.card h3{font-size:1.2rem}
+
+/* detail */
+.back{display:inline-block;margin-bottom:22px;color:var(--muted);text-decoration:none;font-weight:500}
+.back:hover{color:var(--ink)}
+.detail h2{font-size:clamp(1.9rem,5vw,3rem);font-weight:800;letter-spacing:-.02em;margin:6px 0 18px}
+.workbox{aspect-ratio:16/9;border-radius:16px;border:2px dashed var(--line);background:var(--surface);display:grid;place-items:center;text-align:center;color:var(--muted);padding:20px;margin:22px 0;position:relative;overflow:hidden}
+.workbox img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.detail p{max-width:68ch}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px;flex-wrap:wrap}
+
+/* contact */
+.contact{display:grid;gap:12px;max-width:520px}
+.contact a{display:flex;justify-content:space-between;padding:16px 20px;background:var(--surface);border:1px solid var(--line);border-radius:12px;text-decoration:none;font-weight:500}
+.contact a:hover{border-color:var(--ink)}
+.contact span{color:var(--muted);font-weight:400}
+
+.docframe{width:100%;height:80vh;min-height:480px;border:1px solid var(--line);border-radius:14px;background:#fff;margin:22px 0 10px}
+.opendoc{display:inline-block;margin-bottom:8px;color:var(--blue);font-weight:500}
+.pages{display:grid;gap:16px;margin:22px 0}
+.pages figure{margin:0}
+.pages img,.single img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px;background:#fff}
+.pages figcaption{font-size:.88rem;color:var(--muted);margin-top:6px;text-align:center}
+.single{margin:22px 0}
+
+footer{border-top:1px solid var(--line);padding:22px 20px;text-align:center;color:var(--muted);font-size:.92rem}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.photo{aspect-ratio:16/10}}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+</head>
+<body>
+<div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<header class="site">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#home" id="brandName">My MIL Portfolio</a>
+    <ul>
+      <li><a class="link" href="#home" data-nav="home">Me</a></li>
+      <li><a class="link" href="#activities" data-nav="activities">My Activities</a></li>
+      <li><a class="link" href="#contact" data-nav="contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="app"></main>
+
+<script>
+
+const ME = {
+  name: "Jojedem Borja",
+  quote: "6 foot feminist matcha drinker, Clairo fan btw.",
+  school: "MFI Polytechnic Institute",
+  intro: "Hi, this is my portfolio for MIL. Browse my activities to see what I made this semester.",
+  photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbC495doA9vhFg-riSVoKeiZ1R7A5dir_rtlXUJ0cDFQ&s=10 ",   
+  contacts: [
+    { label: "Facebook",  value: "Jojedem Borja",  url: "https://www.facebook.com/jojedem.borja.2025/" },
+    { label: "Instagram", value: "@notahumannamedjj",              url: "https://www.instagram.com/notahumannamedjj?dmpr=cHZ3ZDNyM3N4Nnps" },
+    { label: "Email",     value: "Jojedemhb@gmail.com",        url: "mailto:Jojedemhb@gmail.com " }
+  ]
+};
+
+
+const ACTIVITIES = [
+  { id:"comparative-report", type:"",       title:"Comparative Report",   color:"#ffc72c", doc:"https://docs.google.com/document/d/1qRtv9qCrCv_ubn5pdGloB9XFVmQnvqPeJw_kGrUa5_4/edit?usp=sharing", thumb:"images/Comprep.png", text:"This report compares EDSA I to EDSA II" },
+
+  { id:"news-article",       type:"",      title:"News Article: MFI Buwan ng Wika", color:"#12b5a5", doc:"https://docs.google.com/document/d/1c0QCKOjHFVsmgeFgk7BZmBqEZloZkOhQRjAmG0A79ww/edit?usp=sharing", thumb:"images/Buwan.png", text:"This News Article is about the MFI Buwan ng Wika event. " },
+
+  { id:"reflection",         type:"",      title:"Reflection Paper: Magtanim ay 'Di Biro ",     color:"#43b852", doc:"https://docs.google.com/document/d/1hiQj20t27sQn98JJrFxwr0eKrRuz9xT7E8kDwtsk4X8/edit?usp=sharing", thumb:"images/Magtanim.png", text:"Write a short description of this activity here: what the task was, what you learned, and how you did it." },
+
+  { id:"illustration",       type:"",          title:"Illustration: Multo",         color:"#e4358a", image:"images/multo.jpg", text:"This drawing is supposedly my old school. It's my multo because I deeply regret changing schools." },
+
+  { id:"typeface",           type:"",       title:"Typeface",             color:"#ec4a3f", image:"images/font.jpg", text:"This is a font that is made up of my nickname 'JJ'" },
+
+  { id:"process-description",type:"",      title:"Process Description",  color:"#7b9bff", doc:"https://docs.google.com/document/d/1sf60kCrm6dYpVU2-xfMJziCPCQ-ahRA2fBMrUh7It4c/edit?usp=sharing", thumb:"images/Processdesc.png", text:"This is a guide on how to Install Laragon and how to run your very first PHP script" },
+
+  { id:"movie-review",       type:"",       title:"Movie Review: 'Straw' ",         color:"#ffc72c", image:"images/straw.jpg", text:"This is a movie review about the movie 'Straw' " },
+
+  { id:"movie-poster",       type:"",       title:"Movie Poster: Ang Huling El Bimbo",         color:"#12b5a5", image:"images/AHB,FINISHED.webp", text:"A movie poster about the musical 'Ang Huling El Bimbo' by Dexter Santos " },
+
+  { id:"movie-slogan",       type:" ",      title:"Movie Slogan: Ang Huling El Bimbo",         color:"#e4358a", image:"images/sloganF.webp", text:"A slogan about the musical 'Ang Huling El Bimbo' by Dexter Santos " }
+];
+
+/* ========================================================================================== */
+
+const app = document.getElementById("app");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const imgOr = (src, label) => src ? `<img src="${esc(src)}" alt="${esc(label)}">` : `<span>Photo or file goes here<br><small>${esc(label)}</small></span>`;
+
+function home(){
+  return `<section class="view on">
+    <div class="hero">
+      <div>
+        <h1>${esc(ME.name)}</h1>
+        <p class="quote">${esc(ME.quote)}</p>
+        <a class="btn" href="#activities">View my works</a>
+      </div>
+      <div class="photo">${imgOr(ME.photo, "Your photo")}</div>
+    </div>
+    <div class="about">
+      <div><h3>Who I am</h3><p>${esc(ME.intro)}</p></div>
+      <div><h3>School</h3><p>${esc(ME.school)}</p></div>
+      <div><h3>Subject</h3><p>Media and Information Literacy (MIL)</p></div>
+    </div>
+  </section>`;
+}
+
+function thumb(a,i){
+  const s = a.thumb || a.image || (a.pages && a.pages[0]);
+  return s ? `<img src="${esc(s)}" alt="">` : String.fromCharCode(97+i);
+}
+
+function activities(){
+  const cards = ACTIVITIES.map((a,i)=>`
+    <a class="card" href="#${a.id}">
+      <div class="thumb${i%2?' alt':''}">${thumb(a,i)}</div>
+      <div class="body"><span class="tag">${esc(a.type)}</span><h3>${esc(a.title)}</h3></div>
+    </a>`).join("");
+  return `<section class="view on">
+    <h2 class="page-title">My Activities</h2>
+    <p class="sub">Select an activity to open it</p>
+    <div class="grid">${cards}</div>
+  </section>`;
+}
+
+function work(a){
+  if(a.doc){
+    return `<iframe class="docframe" src="${esc(a.doc)}" title="${esc(a.title)}" loading="lazy"></iframe>
+    <a class="opendoc" href="${esc(a.docLink||a.doc)}" target="_blank" rel="noopener">Open the full document in a new tab</a>`;
+  }
+  if(a.pages && a.pages.length){
+    return `<div class="pages">${a.pages.map((p,k)=>`<figure><img src="${esc(p)}" alt="${esc(a.title)}, page ${k+1}" loading="lazy"><figcaption>Page ${k+1} of ${a.pages.length}</figcaption></figure>`).join("")}</div>`;
+  }
+  if(a.image){
+    return `<div class="single"><img src="${esc(a.image)}" alt="${esc(a.title)}"></div>`;
+  }
+  return `<div class="workbox"><span>Your work goes here<br><small>${esc(a.title)}</small></span></div>`;
+}
+
+function detail(i){
+  const a = ACTIVITIES[i], p = ACTIVITIES[i-1], n = ACTIVITIES[i+1];
+  return `<section class="view on detail">
+    <a class="back" href="#activities">Back to all activities</a>
+    <span class="tag">${esc(a.type)}</span>
+    <h2>${esc(a.title)}</h2>
+    ${work(a)}
+    <p>${esc(a.text)}</p>
+    <div class="pager">
+      ${p ? `<a class="btn ghost" href="#${p.id}">Previous: ${esc(p.title)}</a>` : `<span></span>`}
+      ${n ? `<a class="btn" href="#${n.id}">Next: ${esc(n.title)}</a>` : `<a class="btn" href="#activities">All activities</a>`}
+    </div>
+  </section>`;
+}
+
+function contact(){
+  const rows = ME.contacts.map(c=>`<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.label)}<span>${esc(c.value)}</span></a>`).join("");
+  return `<section class="view on">
+    <h2 class="page-title">Contact Me</h2>
+    <div class="contact">${rows}</div>
+  </section>`;
+}
+
+function route(){
+  const h = location.hash.replace("#","") || "home";
+  const i = ACTIVITIES.findIndex(a=>a.id===h);
+  let page = "home";
+  if(h==="activities"){app.innerHTML=activities();page="activities"}
+  else if(h==="contact"){app.innerHTML=contact();page="contact"}
+  else if(i>=0){app.innerHTML=detail(i);page="activities"}
+  else {app.innerHTML=home()}
+  document.querySelectorAll("[data-nav]").forEach(l=>{
+    if(l.dataset.nav===page) l.setAttribute("aria-current","page"); else l.removeAttribute("aria-current");
+  });
+  document.getElementById("brandName").textContent = ME.name==="Your Name Here" ? "My MIL Portfolio" : ME.name + "'s Portfolio";
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
